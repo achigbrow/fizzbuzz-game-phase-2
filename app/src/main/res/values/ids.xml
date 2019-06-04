@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <item name="round_header" type="id">round_header</item>
+  <item name="round_footer" type="id">round_footer</item>
+</resources>
