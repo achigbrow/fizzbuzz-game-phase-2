@@ -38,5 +38,11 @@
   <string name="correct_description">Correct!</string>
   <string name="incorrect_description">Incorrect!</string>
   <string name="reset">reset</string>
+  <string name="reset_message">New Game</string>
+  <string name="fizz_buzz_marker"><![CDATA[3&5]]></string>
+  <string name="fizz_marker">3</string>
+  <string name="buzz_marker">5</string>
+  <string name="neither_marker">Neither</string>
+  <string name="time_expired_msg">Game Over</string>
 
 </resources>

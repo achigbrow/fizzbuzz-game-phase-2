@@ -8,8 +8,8 @@
   tools:context=".controller.MainActivity">
 <ImageView
   android:id="@+id/correct_fizz_buzz_indicator"
-  android:layout_width="100dp"
-  android:layout_height="100dp"
+  android:layout_width="@dimen/indicator_size"
+  android:layout_height="@dimen/indicator_size"
   android:src="@drawable/correct_indicator"
   android:visibility="visible"
   android:alpha="0"
@@ -20,8 +20,8 @@
 
   <ImageView
     android:id="@+id/correct_fizz_indicator"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="@dimen/indicator_size"
+    android:layout_height="@dimen/indicator_size"
     android:src="@drawable/correct_indicator"
     android:visibility="visible"
     android:alpha="0"
@@ -32,8 +32,8 @@
 
   <ImageView
     android:id="@+id/correct_neither_indicator"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="@dimen/indicator_size"
+    android:layout_height="@dimen/indicator_size"
     android:src="@drawable/correct_indicator"
     android:visibility="visible"
     android:alpha="0"
@@ -44,8 +44,8 @@
 
   <ImageView
     android:id="@+id/correct_buzz_indicator"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="@dimen/indicator_size"
+    android:layout_height="@dimen/indicator_size"
     android:src="@drawable/correct_indicator"
     android:visibility="visible"
     android:alpha="0"
@@ -56,8 +56,8 @@
 
   <ImageView
     android:id="@+id/incorrect_fizz_buzz_indicator"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="@dimen/indicator_size"
+    android:layout_height="@dimen/indicator_size"
     android:visibility="visible"
     android:alpha="0"
     android:src="@drawable/incorrect_indicator"
@@ -68,8 +68,8 @@
 
   <ImageView
     android:id="@+id/incorrect_fizz_indicator"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="@dimen/indicator_size"
+    android:layout_height="@dimen/indicator_size"
     android:src="@drawable/incorrect_indicator"
     android:visibility="visible"
     android:alpha="0"
@@ -80,8 +80,8 @@
 
   <ImageView
     android:id="@+id/incorrect_neither_indicator"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="@dimen/indicator_size"
+    android:layout_height="@dimen/indicator_size"
     android:src="@drawable/incorrect_indicator"
     android:visibility="visible"
     android:alpha="0"
@@ -92,8 +92,8 @@
 
   <ImageView
     android:id="@+id/incorrect_buzz_indicator"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="@dimen/indicator_size"
+    android:layout_height="@dimen/indicator_size"
     android:src="@drawable/incorrect_indicator"
     android:visibility="visible"
     android:alpha="0"
@@ -101,6 +101,42 @@
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/fizz_buzz_marker"
+    style="@style/DirectionMarker"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/fizz_marker"
+    style="@style/DirectionMarker"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/buzz_marker"
+    style="@style/DirectionMarker"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/neither_marker"
+    style="@style/DirectionMarker"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"/>
 
 
   <TextView

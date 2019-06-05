@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.preference.PreferenceManager;
@@ -53,10 +54,10 @@ public class MainActivity extends AppCompatActivity
   private int gameDuration;
   private long gameTimerStart;
   private long gameTimeElapsed;
-  String gameDataKey;
-  String gameTimeElapsedKey;
+  private String gameDataKey;
+  private String gameTimeElapsedKey;
 
-  //TODO Why doesn't my game pause the timer and then resume from it's pause point onPause?
+  
 
 
   /**
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity
       gameTimeElapsed = savedInstanceState.getLong(gameTimeElapsedKey, 0);
     }
     if (game == null) {
-      game = new Game(timeLimit, numDigits, gameDuration);
+      initGame();
     }
   }
 
@@ -166,11 +167,11 @@ public class MainActivity extends AppCompatActivity
     switch (item.getItemId()) {
       case R.id.reset:
         //TODO Combine invocations of game constructor.
-        game = new Game(timeLimit, numDigits, gameDuration);
+        initGame();
         gameTimeElapsed = 0;
         complete = false;
+        Toast.makeText(this, R.string.reset_message, Toast.LENGTH_LONG).show();
         pauseGame();
-
       case R.id.play:
         resumeGame();
         break;
@@ -182,15 +183,19 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
         break;
       case R.id.status:
-        intent = new Intent(this, StatusActivity.class);
-        intent.putExtra(getString(R.string.game_data_key), game);
-        startActivity(intent);
+        showStats();
         break;
       default:
         handled = super.onOptionsItemSelected(item);
         break;
     }
     return handled;
+  }
+
+  private void showStats() {
+    Intent intent = new Intent(this, StatusActivity.class);
+    intent.putExtra(getString(R.string.game_data_key), game);
+    startActivity(intent);
   }
 
   /**
@@ -227,6 +232,12 @@ public class MainActivity extends AppCompatActivity
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     readSettings();
     //TODO Set any necessary flags, threads, etc. to restart game if necessary.
+  }
+
+  private void initGame() {
+    game = new Game(timeLimit, numDigits, gameDuration);
+    complete = false;
+    gameTimeElapsed = 0;
   }
 
   private void readSettings() {
@@ -266,8 +277,7 @@ public class MainActivity extends AppCompatActivity
   private void resumeGame() {
     running = true;
     if (game == null) {
-      game = new Game(timeLimit, numDigits, gameDuration);
-      gameTimeElapsed = 0;
+      initGame();
     }
     updateValue();
     startGameTimer();
@@ -331,13 +341,14 @@ public class MainActivity extends AppCompatActivity
     if (timeLimit != 0) {
       valueTimer = new Timer();
       valueTimer.schedule(new TimeoutTask(), timeLimit * 1000);
-      gameTimerStart = System.currentTimeMillis();
     }
   }
 
+
   private void startGameTimer() {
     gameTimer = new Timer();
-    gameTimer.schedule(new GameTimeoutTask(), (1000L * gameDuration) - gameTimeElapsed );
+    gameTimer.schedule(new GameTimeoutTask(), 1000L * gameDuration - gameTimeElapsed);
+    gameTimerStart = System.currentTimeMillis();
   }
 
   private class TimeoutTask extends TimerTask {
@@ -358,7 +369,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void run() {
       complete = true;
-      runOnUiThread(() -> pauseGame());
+      runOnUiThread(() -> {
+        pauseGame();
+        Toast.makeText(MainActivity.this, R.string.time_expired_msg, Toast.LENGTH_LONG).show();
+        showStats();
+      });
     }
   }
 
