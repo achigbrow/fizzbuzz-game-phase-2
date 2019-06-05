@@ -156,4 +156,12 @@
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"/>
 
+  <TextView
+    android:id="@+id/clock_display"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    style="@style/ClockDisplay"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

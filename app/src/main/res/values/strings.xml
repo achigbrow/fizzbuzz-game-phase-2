@@ -45,4 +45,6 @@
   <string name="neither_marker">Neither</string>
   <string name="time_expired_msg">Game Over</string>
 
+  <string name="clock_format">%1$d:%2$04.1f</string>
+
 </resources>
